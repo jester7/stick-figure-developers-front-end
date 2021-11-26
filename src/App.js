@@ -8,14 +8,14 @@ const TWITTER_LINK = `https://twitter.com/${TWITTER_HANDLE}`;
 const OPENSEA_LINK = '';
 const TOTAL_MINT_COUNT = 50;
 
-const App = async () => {
+const App = () => {
 
   /*
     * Just a state variable we use to store our user's public wallet. Don't forget to import useState.
     */
   const [currentAccount, setCurrentAccount] = useState("");
 
-  const checkIfWalletIsConnected = () => {
+  const checkIfWalletIsConnected = async () => {
     /*
     * First make sure we have access to window.ethereum
     */
