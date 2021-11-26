@@ -8,7 +8,7 @@ const TWITTER_LINK = `https://twitter.com/${TWITTER_HANDLE}`;
 const OPENSEA_LINK = '';
 const TOTAL_MINT_COUNT = 50;
 
-const App = () => {
+const App = async () => {
 
   /*
     * Just a state variable we use to store our user's public wallet. Don't forget to import useState.
