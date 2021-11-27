@@ -10,8 +10,8 @@ const TWITTER_LINK = `https://twitter.com/${TWITTER_HANDLE}`;
 const OPENSEA_LINK = '';
 const TOTAL_MINT_COUNT = 50;
 
-const CONTRACT_ADDRESS = "0xE6DDc9b40FbA5f8643F6b4080EBE2C08516e915C";
-
+//const CONTRACT_ADDRESS = "0xE6DDc9b40FbA5f8643F6b4080EBE2C08516e915C";
+const CONTRACT_ADDRESS = "0xe7c1dCb0bA5C2e3e1061150C387Ff2534258639C"; // removed hardhat console, testing errors and events
 
 const App = () => {
 
