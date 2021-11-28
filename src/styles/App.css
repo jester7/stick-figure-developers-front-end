@@ -7,7 +7,7 @@
 
 .container {
   height: 100%;
-  background-color: #0d1116;
+  background-color: #3d254b;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
@@ -24,21 +24,47 @@
 }
 
 .mint-animation-container img {
-  width:50%;
+  width:30%;
   height:auto;
   margin: 0 auto;
 }
 
-.sub-text {
+.sub-text, .message {
+  max-width: 50%;
+  margin:1em auto;
+}
+
+.sub-text, p {
   font-size: 25px;
   color: white;
 }
+
+.counter {
+  font-size:200%;
+  color:white;
+  font-weight: bold;
+}
+
+.counter span, p em {
+  color:#e453cc;
+
+}
+
+img.sample {
+  height: 300px;
+  width: auto;
+  display:block;
+  clear:both;
+  margin:30px auto 10px auto;
+}
+
 
 .gradient-text {
   background: -webkit-linear-gradient(left, #ea1657 25%, #c53931 75%);
   background-clip: text;
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
+  text-shadow: 2px 2px 2px rgba(34,34,34,0.34);
 }
 
 .cta-button {
@@ -82,6 +108,9 @@
   justify-content: center;
   align-items: center;
   padding-bottom: 30px;
+  position: fixed;
+  bottom:0;
+  width:100%;
 }
 
 .twitter-logo {
@@ -93,6 +122,7 @@
   color: white;
   font-size: 16px;
   font-weight: bold;
+  text-align: center;
 }
 
 /* KeyFrames */
