@@ -1,0 +1,55 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 361.88 399">
+    <defs>
+        <style>
+            .wood {
+                fill: #756828;
+                stroke: #000;
+
+            }
+
+            .metal {
+                fill: #aaa;
+                stroke: #000;
+                stroke-miterlimit: 10;
+                stroke-width: 1.3px;
+            }
+
+            .object {
+                animation-name: mine;
+                animation-duration: 2s;
+                animation-iteration-count: infinite;
+                animation-timing-function: linear;
+                transform-origin: 50% 50%;
+            }
+
+            @keyframes mine {
+                0% {
+                    transform: rotate(-15deg);
+                }
+
+                25% {
+                    transform: rotate(15deg);
+                }
+
+                50% {
+                    transform: rotate(30deg);
+                }
+
+                75% {
+                    transform: rotate(15deg);
+                }
+
+                100% {
+                    transform: rotate(-15deg);
+                }
+            }
+        </style>
+    </defs>
+    <g class="object">
+        <rect class="wood" x="104.64" y="0.52" width="48.97" height="397.97" />
+        <path d="M304,176V573H256V176H304m1-1H255V574h50V175Z" transform="translate(-150.87 -175)" />
+        <path class="metal"
+            d="M509,249.15s-128.5-19-244.31-19C229,230.2,152.5,253,152.5,253s50.12-70.5,112.19-70.5C380.5,182.5,509,249.15,509,249.15Z"
+            transform="translate(-150.87 -175)" />
+    </g>
+</svg>
