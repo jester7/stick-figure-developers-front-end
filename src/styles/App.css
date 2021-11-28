@@ -1,20 +1,23 @@
+body {
+  background: -webkit-linear-gradient(left, #080808 5%, #5a3072 50%,#080808 95%);
+}
+
 .App {
   height: 100vh;
-  background-color: #0d1116;
-  overflow: scroll;
+ overflow: scroll;
   text-align: center;
 }
 
 .container {
   height: 100%;
-  background-color: #3d254b;
+
   display: flex;
   flex-direction: column;
   justify-content: space-between;
 }
 
 .header-container {
-  padding-top: 30px;
+  margin-top: 30px;
 }
 
 .header {
@@ -24,8 +27,14 @@
 }
 
 .last-nft a {
-  color:aqua;
+  color:rgb(192, 92, 138);
+  text-decoration: none;
 }
+
+.last-nft a:hover {
+  color:rgb(231, 78, 149);
+}
+
 
 .mint-animation-container img {
   width:30%;
@@ -64,7 +73,7 @@ img.sample {
 
 
 .gradient-text {
-  background: -webkit-linear-gradient(left, #ea1657 25%, #c53931 75%);
+  background: -webkit-linear-gradient(left, #e7094c 25%, #e9507e 75%);
   background-clip: text;
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
@@ -72,6 +81,9 @@ img.sample {
 }
 
 .cta-button {
+  background: -webkit-linear-gradient(left, #ea1657, #e453cc);
+  background-size: 200% 200%;
+  animation: gradient-animation 4s ease infinite;
   height: 45px;
   border: 0;
   width: auto;
@@ -82,24 +94,10 @@ img.sample {
   font-size: 16px;
   font-weight: bold;
   color: white;
+  clear:both;
+  margin:12px 12px;
 }
 
-.connect-wallet-button {
-  background: -webkit-linear-gradient(left, #ea1657, #c5c931);
-  background-size: 200% 200%;
-  animation: gradient-animation 4s ease infinite;
-}
-
-.mint-button {
-  background: -webkit-linear-gradient(left, #fa2657, #ddb031);
-  background-size: 200% 200%;
-  animation: gradient-animation 4s ease infinite;
-  margin-right: 15px;
-}
-
-.opensea-button {
-  background-color: rgb(226, 32, 64);
-}
 
 .mint-count {
   color: white;
@@ -109,13 +107,36 @@ img.sample {
 
 .footer-container {
   display: flex;
+  border-radius: 8px;
+  background-color:rgba(31, 3, 21, 0.7);
   justify-content: center;
   align-items: center;
-  padding-bottom: 30px;
   position: fixed;
-  bottom:0;
-  width:100%;
+  bottom:20px;
+  width:50%;
+  left:25%;
+  margin:0 0 10px 0;
 }
+
+
+.opensea-button {
+  background: -webkit-linear-gradient(left, #162bea, #6515a7);
+  background-size: 200% 200%;
+  animation: gradient-animation 4s ease infinite;
+  height: 45px;
+  border: 0;
+  width: auto;
+  padding-left: 40px;
+  padding-right: 40px;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 16px;
+  font-weight: bold;
+  color: white;
+  clear:both;
+  margin:12px 0px 12px 24px;
+}
+
 
 .twitter-logo {
   width: 35px;

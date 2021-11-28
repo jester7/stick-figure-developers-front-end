@@ -199,7 +199,7 @@ const App = () => {
   const renderLastNftLink = () => {
     if (lastMintedNFT !== "") {
       return (
-        <a href={lastMintedNFT}>Click here to view your NFT on OpenSea</a>
+        <a target="_blank" href={lastMintedNFT}>Click here to view your NFT on OpenSea</a>
       );
     }
 
@@ -282,7 +282,7 @@ const App = () => {
             and a programming language. On rare occasions, you will get a mythical <em>10x developer</em>.
           </p>
           <p className="counter">
-            A total of <span>{mintedCount}</span> out of <span>{maxSupply}</span> have been minted.
+            A total of <span>{mintedCount}</span> out of <span>{maxSupply}</span> have been minted
           </p>
           <p className="last-nft">{renderLastNftLink()}</p>
           <p className="message">{message}</p>
@@ -294,6 +294,7 @@ const App = () => {
             </button>
           )}
           {renderMintingAnimation()}
+          
           <img className="sample" alt="sample Stick Figure Developer NFT" src={sampleDeveloper} />
         </div>
         
@@ -305,6 +306,9 @@ const App = () => {
             target="_blank"
             rel="noreferrer"
           >{`built by @${TWITTER_HANDLE}`}</a>
+          <button onClick={()=>{window.open('https://testnets.opensea.io/collection/stick-figure-developers-test-aosv2enpjs');}} className="opensea-button">
+            🌊 View Collection on OpenSea
+          </button>
         </div>
       </div>
     </div>
