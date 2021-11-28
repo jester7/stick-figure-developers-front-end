@@ -186,7 +186,7 @@ const App = () => {
     return "";
   };
   
-  const getMintedCount = () => {
+  const getMintedCount = async () => {
     try {
       const { ethereum } = window;
 
@@ -198,7 +198,7 @@ const App = () => {
         let devCount = await connectedContract.getDeveloperCount();
 
         console.log("Checking nft count...");
-        await devCount.wait();
+        //await devCount.wait();
 
         console.log(`got this as devCount: ${devCount}`);
         return devCount;
@@ -210,7 +210,7 @@ const App = () => {
     }
   };
 
-  const getMaxSupply = () => {
+  const getMaxSupply = async () => {
     try {
       const { ethereum } = window;
 
@@ -222,7 +222,7 @@ const App = () => {
         let max = await connectedContract.getMaxSupply();
 
         console.log("Checking max supply...");
-        await max.wait();
+        //await max.wait();
 
         console.log(`got this for max supply: ${max}`);
         return max;
