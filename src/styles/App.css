@@ -23,6 +23,12 @@
   font-weight: bold;
 }
 
+.mint-animation-container img {
+  width:50%;
+  height:auto;
+  margin: 0 auto;
+}
+
 .sub-text {
   font-size: 25px;
   color: white;

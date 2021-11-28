@@ -149,6 +149,7 @@ const App = () => {
         console.log("ethereum object doesn't exist");
       }
     } catch (error) {
+      setIsMinting(false);
       console.log(error)
     }
   }
