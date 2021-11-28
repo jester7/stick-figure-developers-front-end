@@ -1,11 +1,25 @@
 # buildspace Mint Your Own NFT Collection
 
-### **Welcome 👋**
-To get started with this course, clone this repo and follow these commands:
+### Stick Figure Developers NFT learning project
 
-1. Run `npm install` at the root of your directory
-2. Run `npm run start` to start the project
-3. Start coding!
+A Solidity/NFTs learning project done for [buildspace](https://buildspace.so/)).
 
-### **Questions?**
-Have some questions make sure you head over to your [buildspace Dashboard](https://app.buildspace.so/courses/CO961ddb5f-f428-4608-9949-a9a2f461eb3f) and link your Discord account so you can get access to helpful channels and your instructor!
+The back end for this app is [here](https://github.com/jester7/stick-figure-developers-front-end).
+
+### Live Demo
+[![Netlify Status](https://api.netlify.com/api/v1/badges/d50c5b61-d4b9-4d91-82d8-c3be1164d26a/deploy-status)](https://app.netlify.com/sites/stick-figure-developers/deploys)
+
+To view a live demo of this project go to https://stick-figure-developers.netlify.app/
+
+## Usage
+
+To deploy locally and test:
+
+```shell
+npm run start
+```
+
+To deploy on the Rinkeby testnet:
+```shell
+npm run deploy
+```
