@@ -162,7 +162,7 @@ const App = () => {
     </button>
   );
 
-  const renderMintingAnimation = () => {
+  const renderMintingAnimation = (isMinting) => {
     if (isMinting) {
       return (
         <div className="mint-animation-container">
@@ -194,7 +194,7 @@ const App = () => {
               Mint NFT
             </button>
           )}
-          {renderMintingAnimation()}
+          {renderMintingAnimation(isMinting)}
         </div>
         <div className="footer-container">
           <img alt="Twitter Logo" className="twitter-logo" src={twitterLogo} />
