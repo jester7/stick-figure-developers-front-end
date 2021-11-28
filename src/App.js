@@ -1,17 +1,23 @@
 import './styles/App.css';
 import twitterLogo from './assets/twitter-logo.svg';
+import mintingAnimation from './assets/pick-axe.svg';
+
 import React, { useEffect, useState } from "react";
 import { ethers } from "ethers";
 import stickFigureDevelopersNFT from './utils/StickFigureDevelopersNFT.json';
 
 // Constants
-const TWITTER_HANDLE = '_buildspace';
+const TWITTER_HANDLE = 'jovanjester';
 const TWITTER_LINK = `https://twitter.com/${TWITTER_HANDLE}`;
 const OPENSEA_LINK = '';
 const TOTAL_MINT_COUNT = 50;
 
 //const CONTRACT_ADDRESS = "0xE6DDc9b40FbA5f8643F6b4080EBE2C08516e915C";
 const CONTRACT_ADDRESS = "0xe7c1dCb0bA5C2e3e1061150C387Ff2534258639C"; // removed hardhat console, testing errors and events
+
+
+let isMinting = false;
+
 
 const App = () => {
 
@@ -71,9 +77,9 @@ const App = () => {
       let chainId = await ethereum.request({ method: 'eth_chainId' });
       console.log("Connected to chain " + chainId);
       // String, hex code of the chainId of the Rinkebey test network
-      const rinkebyChainId = "0x4"; 
+      const rinkebyChainId = "0x4";
       if (chainId !== rinkebyChainId) {
-	      alert("You are not connected to the Rinkeby Test Network!");
+        alert("You are not connected to the Rinkeby Test Network!");
       }
       /*
       * Boom! This should print out public address once we authorize Metamask.
@@ -120,31 +126,33 @@ const App = () => {
 
 
   const askContractToMintNft = async () => {
-    
-      try {
-        const { ethereum } = window;
-  
-        if (ethereum) {
-          const provider = new ethers.providers.Web3Provider(ethereum);
-          const signer = provider.getSigner();
-          const connectedContract = new ethers.Contract(CONTRACT_ADDRESS, stickFigureDevelopersNFT.abi, signer);
-  
-          console.log("going to pop wallet now to pay gas, oh no...")
-          let nftTxn = await connectedContract.createDeveloper();
-  
-          console.log("Mining... please wait.")
-          await nftTxn.wait();
-          
-          console.log(`Mined, see transaction: https://rinkeby.etherscan.io/tx/${nftTxn.hash}`);
-  
-        } else {
-          console.log("ethereum object doesn't exist");
-        }
-      } catch (error) {
-        console.log(error)
+
+    try {
+      const { ethereum } = window;
+
+      if (ethereum) {
+        const provider = new ethers.providers.Web3Provider(ethereum);
+        const signer = provider.getSigner();
+        const connectedContract = new ethers.Contract(CONTRACT_ADDRESS, stickFigureDevelopersNFT.abi, signer);
+
+        console.log("going to pop wallet now to pay gas, whales aren't afraid of gas fees!")
+        let nftTxn = await connectedContract.createDeveloper();
+
+        console.log("Mining... please wait.");
+        isMinting = true;
+        await nftTxn.wait();
+        isMinting = false;
+
+        console.log(`Mined, see transaction: https://rinkeby.etherscan.io/tx/${nftTxn.hash}`);
+
+      } else {
+        console.log("ethereum object doesn't exist");
       }
+    } catch (error) {
+      console.log(error)
+    }
   }
-  
+
 
 
   // Render Methods
@@ -153,6 +161,18 @@ const App = () => {
       Connect to Wallet
     </button>
   );
+
+  const renderMintingAnimation = () => {
+    if (isMinting) {
+      return (
+        <div className="mint-animation-container">
+          <img alt="Minting animation" className="pick-axe" src={mintingAnimation} />
+        </div>
+      );
+    } else {
+      return ("");
+    }
+  };
 
   useEffect(() => {
     checkIfWalletIsConnected();
@@ -165,7 +185,7 @@ const App = () => {
         <div className="header-container">
           <p className="header gradient-text">Stick Figure Developers NFTs</p>
           <p className="sub-text">
-            Each unique. Each beautiful. Discover your Stick Figure Developer NFT today.
+            Each unique, beautiful and talented. Discover your Stick Figure Developer NFT today.
           </p>
           {currentAccount === "" ? (
             renderNotConnectedContainer()
@@ -174,6 +194,7 @@ const App = () => {
               Mint NFT
             </button>
           )}
+          {renderMintingAnimation}
         </div>
         <div className="footer-container">
           <img alt="Twitter Logo" className="twitter-logo" src={twitterLogo} />
