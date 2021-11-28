@@ -23,6 +23,10 @@
   font-weight: bold;
 }
 
+.last-nft a {
+  color:aqua;
+}
+
 .mint-animation-container img {
   width:30%;
   height:auto;

@@ -58,7 +58,10 @@ const App = () => {
       console.log("Found an authorized account:", account);
       setCurrentAccount(account);
       setupEventListener();
+      getMaxNFTs();
+      getMintedCount();
     } else {
+      setMessage("Not connected to wallet")
       console.log("No authorized account found")
     }
   }
@@ -92,6 +95,10 @@ const App = () => {
       */
       console.log("Connected", accounts[0]);
       setCurrentAccount(accounts[0]);
+      
+      getMaxNFTs();
+      getMintedCount();
+      setMessage("Connected to your wallet successfully!")
 
       setupEventListener();
     } catch (error) {
@@ -148,7 +155,7 @@ const App = () => {
         let nftTxn = await connectedContract.createDeveloper();
 
         console.log("Mining... please wait.");
-        setMessage("Minting in progress.");
+        setMessage("Minting in progress");
         setIsMinting(true);
         await nftTxn.wait();
         setIsMinting(false);
@@ -161,7 +168,7 @@ const App = () => {
       }
     } catch (error) {
       setIsMinting(false);
-      setMessage("Something went wrong 😢, please try minting again.");
+      setMessage("Something went wrong 😢, please try minting again");
 
       setLastMintedNFT("");
       console.log(error)
