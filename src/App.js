@@ -139,7 +139,6 @@ const App = () => {
         let nftTxn = await connectedContract.createDeveloper();
 
         console.log("Mining... please wait.");
-        this.s
         setIsMinting(true);
         await nftTxn.wait();
         setIsMinting(false);
