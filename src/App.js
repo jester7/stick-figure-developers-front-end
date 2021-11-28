@@ -9,14 +9,12 @@ import stickFigureDevelopersNFT from './utils/StickFigureDevelopersNFT.json';
 // Constants
 const TWITTER_HANDLE = 'jovanjester';
 const TWITTER_LINK = `https://twitter.com/${TWITTER_HANDLE}`;
-const OPENSEA_LINK = '';
+const OPENSEA_LINK = 'https://testnets.opensea.io/assets/';
 const TOTAL_MINT_COUNT = 50;
 
 //const CONTRACT_ADDRESS = "0xE6DDc9b40FbA5f8643F6b4080EBE2C08516e915C";
-const CONTRACT_ADDRESS = "0xe7c1dCb0bA5C2e3e1061150C387Ff2534258639C"; // removed hardhat console, testing errors and events
-
-
-
+//const CONTRACT_ADDRESS = "0xe7c1dCb0bA5C2e3e1061150C387Ff2534258639C"; // removed hardhat console, testing errors and events
+const CONTRACT_ADDRESS = "0xCB0Cae20BB14412dB346Dd96Ce75592a2911c5D5";
 
 const App = () => {
 
@@ -24,7 +22,8 @@ const App = () => {
     * Just a state variable we use to store our user's public wallet. Don't forget to import useState.
     */
   const [currentAccount, setCurrentAccount] = useState("");
-  const [isMinting, setIsMinting] = useState(false);
+  const [isMinting, setIsMinting] = useState(false); // state variable for minting/mining animation
+  const [lastMintedNFT, setLastMintedNFT] = useState("");
   
   const checkIfWalletIsConnected = async () => {
     /*
@@ -109,7 +108,8 @@ const App = () => {
         // This will essentially "capture" our event when our contract throws it.
         // If you're familiar with webhooks, it's very similar to that!
         connectedContract.on("NewDeveloper", (from, tokenId) => {
-          console.log(from, tokenId.toNumber())
+          setLastMintedNFT(`"https://testnets.opensea.io/assets/${CONTRACT_ADDRESS}/${tokenId.toNumber()}"`);
+          console.log(from, tokenId.toNumber());
           alert(`Hey there! We've minted your NFT and sent it to your wallet. It may be blank right now. It can take a max of 10 min to show up on OpenSea. Here's the link: https://testnets.opensea.io/assets/${CONTRACT_ADDRESS}/${tokenId.toNumber()}`)
         });
 
@@ -150,6 +150,7 @@ const App = () => {
       }
     } catch (error) {
       setIsMinting(false);
+      setLastMintedNFT("");
       console.log(error)
     }
   }
@@ -175,6 +176,64 @@ const App = () => {
     }
   };
 
+  const renderLastNftLink = () => {
+    if (lastMintedNFT !== "") {
+      return (
+        <a href={lastMintedNFT}>Click here to view your NFT on OpenSea</a>
+      );
+    }
+
+    return "";
+  };
+  
+  const getMintedCount = () => {
+    try {
+      const { ethereum } = window;
+
+      if (ethereum) {
+        const provider = new ethers.providers.Web3Provider(ethereum);
+        const signer = provider.getSigner();
+        const connectedContract = new ethers.Contract(CONTRACT_ADDRESS, stickFigureDevelopersNFT.abi, signer);
+
+        let devCount = await connectedContract.getDeveloperCount();
+
+        console.log("Checking nft count...");
+        await devCount.wait();
+
+        console.log(`got this as devCount: ${devCount}`);
+        return devCount;
+      } else {
+        console.log("ethereum object doesn't exist");
+      }
+    } catch (error) {
+      console.log(error)
+    }
+  };
+
+  const getMaxSupply = () => {
+    try {
+      const { ethereum } = window;
+
+      if (ethereum) {
+        const provider = new ethers.providers.Web3Provider(ethereum);
+        const signer = provider.getSigner();
+        const connectedContract = new ethers.Contract(CONTRACT_ADDRESS, stickFigureDevelopersNFT.abi, signer);
+
+        let max = await connectedContract.getMaxSupply();
+
+        console.log("Checking max supply...");
+        await max.wait();
+
+        console.log(`got this for max supply: ${max}`);
+        return max;
+      } else {
+        console.log("ethereum object doesn't exist");
+      }
+    } catch (error) {
+      console.log(error)
+    }
+  };
+
   useEffect(() => {
     checkIfWalletIsConnected();
   }, [])
@@ -186,8 +245,12 @@ const App = () => {
         <div className="header-container">
           <p className="header gradient-text">Stick Figure Developers NFTs</p>
           <p className="sub-text">
-            Each unique, beautiful and talented. Discover your Stick Figure Developer NFT today.
+            Your Stick Figure Developer NFT will be minted with a random facial expression, colorful clothing, and programming language. On rare occasions, you will get a mythical <em>10x</em> developer.
           </p>
+          <p class="counter">
+            A total of <span>{getMintedCount()}</span> out of <span>{getMaxSupply()}</span> have been minted.
+          </p>
+          <p class="last-nft">{renderLastNftLink()}</p>
           {currentAccount === "" ? (
             renderNotConnectedContainer()
           ) : (
@@ -197,6 +260,7 @@ const App = () => {
           )}
           {renderMintingAnimation()}
         </div>
+        
         <div className="footer-container">
           <img alt="Twitter Logo" className="twitter-logo" src={twitterLogo} />
           <a
