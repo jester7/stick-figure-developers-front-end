@@ -16,7 +16,6 @@ const TOTAL_MINT_COUNT = 50;
 const CONTRACT_ADDRESS = "0xe7c1dCb0bA5C2e3e1061150C387Ff2534258639C"; // removed hardhat console, testing errors and events
 
 
-let isMinting = false;
 
 
 const App = () => {
@@ -25,7 +24,8 @@ const App = () => {
     * Just a state variable we use to store our user's public wallet. Don't forget to import useState.
     */
   const [currentAccount, setCurrentAccount] = useState("");
-
+  const [isMinting, setIsMinting] = useState(false);
+  
   const checkIfWalletIsConnected = async () => {
     /*
     * First make sure we have access to window.ethereum
@@ -139,9 +139,10 @@ const App = () => {
         let nftTxn = await connectedContract.createDeveloper();
 
         console.log("Mining... please wait.");
-        isMinting = true;
+        this.s
+        setIsMinting(true);
         await nftTxn.wait();
-        isMinting = false;
+        setIsMinting(false);
 
         console.log(`Mined, see transaction: https://rinkeby.etherscan.io/tx/${nftTxn.hash}`);
 
@@ -162,7 +163,7 @@ const App = () => {
     </button>
   );
 
-  const renderMintingAnimation = (isMinting) => {
+  const renderMintingAnimation = () => {
     if (isMinting) {
       return (
         <div className="mint-animation-container">
@@ -194,7 +195,7 @@ const App = () => {
               Mint NFT
             </button>
           )}
-          {renderMintingAnimation(isMinting)}
+          {renderMintingAnimation()}
         </div>
         <div className="footer-container">
           <img alt="Twitter Logo" className="twitter-logo" src={twitterLogo} />
