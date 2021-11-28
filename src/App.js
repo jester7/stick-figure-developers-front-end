@@ -176,6 +176,7 @@ const App = () => {
     }
   };
 
+  /*
   const renderLastNftLink = () => {
     if (lastMintedNFT !== "") {
       return (
@@ -183,8 +184,8 @@ const App = () => {
       );
     }
 
-    return "";
-  };
+    return (<span></span>);
+  }; */
   
   const getMintedCount = async () => {
     try {
@@ -250,7 +251,7 @@ const App = () => {
           <p class="counter">
             A total of <span>{getMintedCount()}</span> out of <span>{getMaxSupply()}</span> have been minted.
           </p>
-          <p class="last-nft">{renderLastNftLink()}</p>
+          {/* <p class="last-nft">{renderLastNftLink()}</p> */}
           {currentAccount === "" ? (
             renderNotConnectedContainer()
           ) : (
