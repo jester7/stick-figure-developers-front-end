@@ -1,4 +1,4 @@
-### Stick Figure Developers NFT learning project
+# Stick Figure Developers NFT learning project
 
 A Solidity/NFTs learning project done for [buildspace](https://buildspace.so/).
 
